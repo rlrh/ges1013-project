@@ -1,7 +1,7 @@
 import story from "./parts/one";
 
 const botui = new BotUI("hello-world");
-export const delay = 10;
+export const delay = 1000;
 
 async function main() {
   await botui.message.add({
