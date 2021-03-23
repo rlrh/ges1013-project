@@ -1,4 +1,4 @@
-import story from "./parts/one";
+import story from "./story/partOne";
 
 const botui = new BotUI("hello-world");
 export const delay = 1000;
