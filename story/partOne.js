@@ -1,18 +1,18 @@
-import botui, { delay } from "../script.js";
+import { showMessage, promptButton, delay } from "../script.js";
 import { generatePuzzle } from "../helpers.js";
 
 export async function conversation1() {
-  await botui.message.add({
+  await showMessage({
     delay,
     cssClass: 'narrator',
     content: "Your friend XYZ is talking to you",
   });
-  await botui.message.add({
+  await showMessage({
     delay,
     loading: true,
     content: "Hey, are you free now? I need your help urgently!!"
   });
-  await botui.action.button({
+  await promptButton({
     delay,
     action: [
       {
@@ -20,12 +20,12 @@ export async function conversation1() {
       }
     ]
   });
-  await botui.message.add({
+  await showMessage({
     delay: delay * 2,
     loading: true,
     content: "Thank you. Do you remember the unit number I used to live at? Can you help to check on my grandmother? My parents and I cannot get in touch with her since yesterday. We are worried as she has slight dementia"
   });
-  await botui.action.button({
+  await promptButton({
     delay,
     action: [
       {
@@ -33,12 +33,12 @@ export async function conversation1() {
       }
     ]
   });
-  await botui.message.add({
+  await showMessage({
     delay,
     loading: true,
     content: "Yes on level 6. I think you can take the connecting bridge from your unit"
   });
-  await botui.action.button({
+  await promptButton({
     delay,
     action: [
       {
@@ -46,17 +46,17 @@ export async function conversation1() {
       }
     ]
   });
-  await botui.message.add({
+  await showMessage({
     delay,
     loading: true,
     content: "you can use the spare key. It's under the 3rd flower pot"
   });
-  await botui.message.add({
+  await showMessage({
     delay: delay,
     loading: true,
     content: "Is she in? hello???"
   });
-  await botui.action.button({
+  await promptButton({
     delay,
     action: [
       {
@@ -64,23 +64,23 @@ export async function conversation1() {
       }
     ]
   });
-  await botui.message.add({
+  await showMessage({
     delay,
     loading: true,
     content: "sigh, my grandma might have wandered out again. Can I trouble you again to find her?"
   });
-  await botui.message.add({
+  await showMessage({
     delay: delay * 2,
     loading: true,
     content: "You may want to try Tanjong Katong area first as we often find her there in the past. I'm not sure about the protractor... Let me ask my mother."
   });
-  await botui.message.add({
+  await showMessage({
     delay: delay * 4,
     loading: true,
     content: "Oh, its my mum's. She used to study in a secondary school at Tanjong Katong. Let me know if you can find my grandma there."
   });
-  await botui.message.add({
-    delay,
+  await showMessage({
+    delay: delay * 2,
     loading: true,
     content: "ah sorry, I have to go now, my lesson is starting. Update me!"
   });
@@ -88,13 +88,13 @@ export async function conversation1() {
 }
 
 export async function puzzle1() {
-  await botui.message.add({
+  await showMessage({
     cssClass: 'narrator',
     delay,
     loading: true,
     content: "Task #1: Based on your conversation with your friend and the hints provided, find out the name of the school her mum attended. You can use the internet to help you figure out the answer."
   });
-  await botui.message.add({
+  await showMessage({
     cssClass: 'narrator',
     delay,
     loading: true,
@@ -107,23 +107,45 @@ export async function puzzle1() {
       content: 'https://www.google.com/maps/d/embed?mid=1P2_glEKlr2C_EN8RcAE6-VYVeZevNplx'
     },
     {
-      content: "The school was established before 1965."
+      content: "Hint: The school was established before 1965."
     },
     {
-      content: "Unlike most schools, it's motto is not in Latin."
+      content: "Hint: Unlike most schools, it's motto is not in Latin."
     }
   ]
   const correctAnswerFn = (answer) => answer.toLowerCase().includes("chung cheng");
   const answerPlaceholder = "Name of the school";
   const hintButtonText = "I need a hint";
   const wrongAnswerText = "Oh no. That is not the correct school. Please try again.";
-  await generatePuzzle(hints, correctAnswerFn, answerPlaceholder, hintButtonText, wrongAnswerText, "narrator");
+  await generatePuzzle(hints, correctAnswerFn, answerPlaceholder, hintButtonText, wrongAnswerText, "narrator", true, true);
   
-  await botui.message.add({
+  await showMessage({
     cssClass: 'narrator',
     delay,
     loading: true,
     content: "That is correct! Your friend's mum attended Chung Cheng High School (Main)."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    content: "You are now at the front gate of Chung Cheng High School (Main). The front gate is a gazetted national monument."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    content: "The school was built in 1947 and designed by their alumni, Mr Ho Beng Heng. It is designed in a Chinese National architectural style. Before World War II, the school supervisor was national hero, Lim Bo Seng. The school also features a large lake inside the school."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    type: "embed",
+    content: "https://www.youtube.com/embed/E6-YEUZK9DU?start=5&end=26"
   });
 }
 

@@ -1,4 +1,4 @@
-import { conversation1, puzzle1 } from "./story/partOneReplay.js";
+import { conversation1, puzzle1 } from "./story/partOne.js";
 
 const localStorage = window.localStorage;
 
