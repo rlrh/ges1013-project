@@ -1,22 +1,33 @@
-import story from "./story/partOne";
+import storyStart, { conversation1, puzzle1 } from "./story/partOne";
 
 const botui = new BotUI("hello-world");
-export const delay = 1000;
+export const delay = 10;
 
 async function main() {
   await botui.message.add({
     cssClass: 'game',
     content: "Press 'Start' to begin the game"
   });
-  await botui.action.button({
+  const res = await botui.action.button({
     action: [
       {
         text: "Start",
         value: "start"
+      },
+      {
+        text: "Load",
+        value: "load"
       }
     ]
   });
-  await story();
+  const mode = res.value;
+  if (mode === "start") {
+    const nextPart = await storyStart();
+    while (nextPart) {
+      nextPart = await nextPart();
+    }
+  }
+
   await botui.message.add({
     cssClass: 'game',
     content: "Congratulations! You finished the game."

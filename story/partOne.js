@@ -1,7 +1,7 @@
 import botui, { delay } from "../script.js";
 import { generatePuzzle } from "../helpers.js";
 
-async function main() {
+export async function conversation1() {
   await botui.message.add({
     delay,
     cssClass: 'narrator',
@@ -84,7 +84,10 @@ async function main() {
     loading: true,
     content: "ah sorry, I have to go now, my lesson is starting. Update me!"
   });
-  
+  return puzzle1;
+}
+
+export async function puzzle1() {
   await botui.message.add({
     cssClass: 'narrator',
     delay,
@@ -124,4 +127,4 @@ async function main() {
   });
 }
 
-export default main;
+export default conversation1;
