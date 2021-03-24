@@ -1,4 +1,4 @@
-import botui, { delay } from "./script.js";
+import { showMessage, promptButtonText, promptText, delay } from "./script.js";
 
 export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder ="Your answer", hintButtonText="I need a hint", wrongAnswerText="Please try again", cssClass=[]) {
   let hintIndex = 0;
@@ -6,7 +6,7 @@ export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder =
     let res;
     if (hintIndex < hints.length) {
       console.log("enter")
-      res = await botui.action.buttontext({
+      res = await promptButtonText({
         delay,
         actionText: {
             placeholder: answerPlaceholder
@@ -19,20 +19,20 @@ export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder =
         ]
       });
     } else {
-      res = await botui.action.text({
+      res = await promptText({
         delay,
         action: {
           placeholder: answerPlaceholder
         }
       });
     }
-
+    
     if (correctAnswerFn(res.value)) {
       console.log("correct");
       return res.value;
     } else if (res.value == "hint") {
       console.log(`hint ${hintIndex}`);
-      await botui.message.add({
+      await showMessage({
         cssClass,
         delay,
         loading: true,
@@ -41,7 +41,7 @@ export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder =
       await puzzlePrompt();
     } else {
       console.log("wrong");
-      await botui.message.add({
+      await showMessage({
         cssClass,
         delay,
         loading: true,

@@ -3,7 +3,7 @@ import { conversation1, puzzle1 } from "./story/partOneReplay";
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 10;
+export const delay = 1000;
 
 const checkpoints = {
   conversation1,
@@ -12,13 +12,13 @@ const checkpoints = {
 const startPoint = conversation1;
 
 async function main() {
-  let mode;
+  let res;
   if (!hasGame()) {
     await showMessage({
       cssClass: 'game',
       content: "Press 'Start' to begin the game"
     }, false);
-    mode = await promptButton({
+    res = await promptButton({
       action: [
         {
           text: "Start",
@@ -31,7 +31,7 @@ async function main() {
       cssClass: 'game',
       content: "Welcome back!"
     }, false);
-    mode = await promptButton({
+    res = await promptButton({
       action: [
         {
           text: "Continue",
@@ -45,13 +45,14 @@ async function main() {
     }, false);
   }
   let nextPart;
+  const mode = res.value;
   if (mode === "start") {
     clearGame();
     nextPart = await startPoint();
   } else if (mode === "load") {
     const {checkpoint, messages} = loadGame();
     for (const message of messages) {
-      await showMessage(message, false);
+      await showMessage({...message, delay: 1}, false);
     }
     nextPart = await checkpoints[checkpoint];
   }
@@ -72,6 +73,7 @@ async function main() {
 }
 
 let messageBuffer = [];
+
 function saveGame(fnName) {
   console.log("saving")
   localStorage.setItem("checkpoint", fnName);
@@ -105,30 +107,31 @@ export async function showMessage(message, save=true) {
 
 export async function promptText(action, save=true) {
   const res = await botui.action.text({...action, addMessage: false});
-  const message = { human: true, content: res.text };
+  const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
-  return res.value;
+  return res;
 }
 
 export async function promptButton(action, save=true) {
   const res = await botui.action.button({...action, addMessage: false});
-  const message = { human: true, content: res.text };
+  const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
-  return res.value;
+  return res;
 }
 
 export async function promptButtonText(action, save=true) {
   const res = await botui.action.buttontext({...action, addMessage: false});
-  const message = { human: true, content: res.text };
+  console.log(res);
+  const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
-  return res.value;
+  return res;
 }
 
 export async function promptSelect(action, save=true) {
   const res = await botui.action.select({...action, addMessage: false});
-  const message = { human: true, content: res.text };
+  const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
-  return res.value;
+  return res;
 }
 
 main();
