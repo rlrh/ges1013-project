@@ -80,7 +80,7 @@ export async function conversation1() {
     content: "Oh, its my mum's. She used to study in a secondary school at Tanjong Katong. Let me know if you can find my grandma there."
   });
   await showMessage({
-    delay,
+    delay: delay * 2,
     loading: true,
     content: "ah sorry, I have to go now, my lesson is starting. Update me!"
   });
@@ -107,23 +107,45 @@ export async function puzzle1() {
       content: 'https://www.google.com/maps/d/embed?mid=1P2_glEKlr2C_EN8RcAE6-VYVeZevNplx'
     },
     {
-      content: "The school was established before 1965."
+      content: "Hint: The school was established before 1965."
     },
     {
-      content: "Unlike most schools, it's motto is not in Latin."
+      content: "Hint: Unlike most schools, it's motto is not in Latin."
     }
   ]
   const correctAnswerFn = (answer) => answer.toLowerCase().includes("chung cheng");
   const answerPlaceholder = "Name of the school";
   const hintButtonText = "I need a hint";
   const wrongAnswerText = "Oh no. That is not the correct school. Please try again.";
-  await generatePuzzle(hints, correctAnswerFn, answerPlaceholder, hintButtonText, wrongAnswerText, "narrator");
+  await generatePuzzle(hints, correctAnswerFn, answerPlaceholder, hintButtonText, wrongAnswerText, "narrator", true, true);
   
   await showMessage({
     cssClass: 'narrator',
     delay,
     loading: true,
     content: "That is correct! Your friend's mum attended Chung Cheng High School (Main)."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    content: "You are now at the front gate of Chung Cheng High School (Main). The front gate is a gazetted national monument."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    content: "The school was built in 1947 and designed by their alumni, Mr Ho Beng Heng. It is designed in a Chinese National architectural style. Before World War II, the school supervisor was national hero, Lim Bo Seng. The school also features a large lake inside the school."
+  });
+
+  await showMessage({
+    cssClass: 'narrator',
+    delay,
+    loading: true,
+    type: "embed",
+    content: "https://www.youtube.com/embed/E6-YEUZK9DU?start=5&end=26"
   });
 }
 

@@ -1,11 +1,31 @@
 import { showMessage, promptButtonText, promptText, delay } from "./script.js";
 
-export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder ="Your answer", hintButtonText="I need a hint", wrongAnswerText="Please try again", cssClass=[]) {
+export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder ="Your answer", hintButtonText="I need a hint", wrongAnswerText="Please try again", cssClass=[], showHint=false,showAllHints=false) {
   let hintIndex = 0;
   async function puzzlePrompt() {
     let res;
+
+    if (showHint) {
+      if (showAllHints) {
+        while (hintIndex < hints.length) {
+          await showMessage({
+            cssClass,
+            delay,
+            loading: true,
+            ...hints[hintIndex++]
+          });
+        }
+      } else {
+        await showMessage({
+          cssClass,
+          delay,
+          loading: true,
+          ...hints[hintIndex++]
+        });
+      } 
+    }
+
     if (hintIndex < hints.length) {
-      console.log("enter")
       res = await promptButtonText({
         delay,
         actionText: {
@@ -32,12 +52,23 @@ export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder =
       return res.value;
     } else if (res.value == "hint") {
       console.log(`hint ${hintIndex}`);
-      await showMessage({
-        cssClass,
-        delay,
-        loading: true,
-        ...hints[hintIndex++]
-      });
+      if (showAllHints) {
+        while (hintIndex < hints.length) {
+          await showMessage({
+            cssClass,
+            delay,
+            loading: true,
+            ...hints[hintIndex++]
+          });
+        }
+      } else {
+        await showMessage({
+          cssClass,
+          delay,
+          loading: true,
+          ...hints[hintIndex++]
+        });
+      } 
       await puzzlePrompt();
     } else {
       console.log("wrong");

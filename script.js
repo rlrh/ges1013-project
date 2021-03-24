@@ -3,7 +3,7 @@ import { conversation1, puzzle1 } from "./story/partOneReplay.js";
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 1000;
+export const delay = 500;
 
 const checkpoints = {
   conversation1,
