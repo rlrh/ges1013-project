@@ -1,3 +1,3 @@
-# web-platform-6wtzg5
+# GES1013 Project
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/web-platform-6wtzg5)
+Site is published at [https://rlrh.github.io/ges1013-project/](https://rlrh.github.io/ges1013-project/).
