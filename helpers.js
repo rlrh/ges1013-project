@@ -50,7 +50,7 @@ export async function generatePuzzle(hints, correctAnswerFn, answerPlaceholder =
     if (correctAnswerFn(res.value)) {
       console.log("correct");
       return res.value;
-    } else if (res.value == "hint") {
+    } else if (res.value === "hint") {
       console.log(`hint ${hintIndex}`);
       if (showAllHints) {
         while (hintIndex < hints.length) {

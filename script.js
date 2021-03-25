@@ -1,13 +1,16 @@
 import { conversation1, puzzle1 } from "./story/partOne.js";
+import { conversation2, puzzle2 } from "./story/partTwo.js";
 
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 500;
+export const delay = 1000;
 
 const checkpoints = {
   conversation1,
-  puzzle1
+  puzzle1,
+  conversation2,
+  puzzle2
 };
 const startPoint = conversation1;
 
@@ -21,7 +24,7 @@ async function main() {
     res = await promptButton({
       action: [
         {
-          text: "Start",
+          text: "Start Game",
           value: "start"
         },
       ]
@@ -34,11 +37,11 @@ async function main() {
     res = await promptButton({
       action: [
         {
-          text: "Continue",
+          text: "Continue Game",
           value: "load"
         },
         {
-          text: "Restart",
+          text: "Restart Game",
           value: "start"
         }
       ]
@@ -57,11 +60,22 @@ async function main() {
     nextPart = await checkpoints[checkpoint];
   }
   while (nextPart) {
-    saveGame(nextPart.name);
-    await showMessage({
-      cssClass: 'game',
-      content: "Your progress has been saved."
-    }, false);
+    if (mode !== "load") {
+      await promptButton({
+        delay,
+        cssClass: "game",
+        action: [
+          {
+            text: "Continue"
+          }
+        ]
+      }, false);
+      saveGame(nextPart.name);
+      await showMessage({
+        cssClass: 'game',
+        content: "Your progress has been saved."
+      }, false);
+    }
     nextPart = await nextPart();
   }
   saveGame(null);
