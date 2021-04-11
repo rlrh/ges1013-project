@@ -167,7 +167,7 @@ export async function puzzle1() {
     delay,
     loading: true,
     content:
-      "The school was built in 1947 and designed by their alumni, Mr Ho Beng Heng. It is designed in a Chinese National architectural style. Before World War II, the school supervisor was national hero, Lim Bo Seng. The school also features a large lake inside the school. Here is [more info](https://www.roots.gov.sg/places/places-landing/Places/national-monuments/chung-cheng-high-school-main-administration-building-and-entrance-arch)"
+      "The school was built in 1947 and designed by their alumni, Mr Ho Beng Heng. It is designed in a Chinese National architectural style. Before World War II, the school supervisor was national hero, Lim Bo Seng. The school also features a large lake inside the school. Here is [more info](https://www.roots.gov.sg/places/places-landing/Places/national-monuments/chung-cheng-high-school-main-administration-building-and-entrance-arch)^"
   });
 
   return conversation2;

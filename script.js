@@ -1,16 +1,24 @@
 import { conversation1, puzzle1 } from "./story/part1.js";
 import { conversation2, puzzle2 } from "./story/part2.js";
+import { conversation2a } from "./story/part2a.js";
+import { conversation2b } from "./story/part2b.js";
+import { conversation2c } from "./story/part2c.js";
+import { conversation2sequel } from "./story/part2sequel.js";
 
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 100;
+export const delay = 500;
 
 const checkpoints = {
   conversation1,
   puzzle1,
   conversation2,
-  puzzle2
+  puzzle2,
+  conversation2a, 
+  conversation2b,
+  conversation2c,
+  conversation2sequel
 };
 const startPoint = conversation1;
 

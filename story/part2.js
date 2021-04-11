@@ -1,10 +1,8 @@
 import { showMessage, promptButton, delay } from "../script.js";
 import { generatePuzzle } from "../helpers.js";
-/*
-import { conversation2a } from "./part2a";
-import { conversation2b } from "./part2b";
-import { conversation2c } from "./part2c";
-*/
+import { conversation2a } from "./part2a.js";
+import { conversation2b } from "./part2b.js";
+import { conversation2c } from "./part2c.js";
 
 export async function conversation2() {
   await showMessage({
@@ -113,12 +111,13 @@ export async function puzzle2() {
     delay,
     action: [
       {
-        text: "Oh wow. This place looks exactly like the photograph she took in 1981. I wonder if she is here."
+        text: "... Oh wow. This place looks exactly like the photograph she took in 1981. I wonder if she is here."
       }
     ]
   });
 
   await promptButton({
+    cssClass: "narrator",
     delay,
     action: [
       {
@@ -152,7 +151,6 @@ export async function puzzle2() {
       }
     ]
   });
-  /*
   switch (res.text) {
     case OPTION_A:
       return conversation2a;
@@ -163,5 +161,4 @@ export async function puzzle2() {
     default:
       return null;
   }
-  */
 }
