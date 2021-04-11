@@ -1,5 +1,10 @@
 import { showMessage, promptButton, delay } from "../script.js";
 import { generatePuzzle } from "../helpers.js";
+/*
+import { conversation2a } from "./part2a";
+import { conversation2b } from "./part2b";
+import { conversation2c } from "./part2c";
+*/
 
 export async function conversation2() {
   await showMessage({
@@ -95,5 +100,68 @@ export async function puzzle2() {
     content:
       "That is correct!"
   });
-  
+
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content:
+      "![image](https://i.imgur.com/XSaAiYc.jpg) You are now at the front gate of CDAC also known as the Former Yock Eng Free School. This building was built in 1941 and was used as a school until 1985. The main building’s octagonal clock tower is a distinctive feature of the building and has served as a landmark for the area. Notably, during the Japanese Occupation, the building was used as a Japanese Military Police HQ."
+  });
+
+  await promptButton({
+    delay,
+    action: [
+      {
+        text: "Oh wow. This place looks exactly like the photograph she took in 1981. I wonder if she is here."
+      }
+    ]
+  });
+
+  await promptButton({
+    delay,
+    action: [
+      {
+        text: "Explore the building"
+      }
+    ]
+  });
+
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content:
+      "![image](https://i.imgur.com/QYAw8Ki.jpg) You found a map of the building at the entrance. Choose an option to explore the place."
+  });
+
+  const OPTION_A = "Staircase landing";
+  const OPTION_B = "Open area";
+  const OPTION_C = "Rooms on the 2nd storey";
+  const res = await promptButton({
+    delay,
+    action: [
+      {
+        text: OPTION_A
+      },
+      {
+        text: OPTION_B
+      },
+      {
+        text: OPTION_C
+      }
+    ]
+  });
+  /*
+  switch (res.text) {
+    case OPTION_A:
+      return conversation2a;
+    case OPTION_B:
+      return conversation2b;
+    case OPTION_C:
+      return conversation2c;
+    default:
+      return null;
+  }
+  */
 }

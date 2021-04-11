@@ -1,6 +1,6 @@
 import { showMessage, promptButton, delay } from "../script.js";
 import { generatePuzzle } from "../helpers.js";
-import { conversation2 } from "./partTwo.js";
+import { conversation2 } from "./part2.js";
 
 export async function conversation1() {
   await showMessage({

@@ -1,10 +1,10 @@
-import { conversation1, puzzle1 } from "./story/partOne.js";
-import { conversation2, puzzle2 } from "./story/partTwo.js";
+import { conversation1, puzzle1 } from "./story/part1.js";
+import { conversation2, puzzle2 } from "./story/part2.js";
 
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 1000;
+export const delay = 100;
 
 const checkpoints = {
   conversation1,
@@ -17,35 +17,47 @@ const startPoint = conversation1;
 async function main() {
   let res;
   if (!hasGame()) {
-    await showMessage({
-      cssClass: 'game',
-      content: "Press 'Start' to begin the game"
-    }, false);
-    res = await promptButton({
-      action: [
-        {
-          text: "Start Game",
-          value: "start"
-        },
-      ]
-    }, false);
+    await showMessage(
+      {
+        cssClass: "game",
+        content: "Press 'Start' to begin the game"
+      },
+      false
+    );
+    res = await promptButton(
+      {
+        action: [
+          {
+            text: "Start Game",
+            value: "start"
+          }
+        ]
+      },
+      false
+    );
   } else {
-    await showMessage({
-      cssClass: 'game',
-      content: "Welcome back!"
-    }, false);
-    res = await promptButton({
-      action: [
-        {
-          text: "Continue Game",
-          value: "load"
-        },
-        {
-          text: "Restart Game",
-          value: "start"
-        }
-      ]
-    }, false);
+    await showMessage(
+      {
+        cssClass: "game",
+        content: "Welcome back!"
+      },
+      false
+    );
+    res = await promptButton(
+      {
+        action: [
+          {
+            text: "Continue Game",
+            value: "load"
+          },
+          {
+            text: "Restart Game",
+            value: "start"
+          }
+        ]
+      },
+      false
+    );
   }
   let nextPart;
   const mode = res.value;
@@ -53,48 +65,60 @@ async function main() {
     clearGame();
     nextPart = await startPoint();
   } else if (mode === "load") {
-    const {checkpoint, messages} = loadGame();
+    const { checkpoint, messages } = loadGame();
     for (const message of messages) {
-      await showMessage({...message, delay: 1}, false);
+      await showMessage({ ...message, delay: 1 }, false);
     }
     nextPart = await checkpoints[checkpoint];
   }
   while (nextPart) {
     if (mode !== "load") {
-      await promptButton({
-        delay,
-        cssClass: "game",
-        action: [
-          {
-            text: "Continue"
-          }
-        ]
-      }, false);
+      await promptButton(
+        {
+          delay,
+          cssClass: "game",
+          action: [
+            {
+              text: "Continue"
+            }
+          ]
+        },
+        false
+      );
       saveGame(nextPart.name);
-      await showMessage({
-        cssClass: 'game',
-        content: "Your progress has been saved."
-      }, false);
+      await showMessage(
+        {
+          cssClass: "game",
+          content: "Your progress has been saved."
+        },
+        false
+      );
     }
     nextPart = await nextPart();
   }
   saveGame(null);
 
-  await showMessage({
-    cssClass: 'game',
-    content: "Congratulations! You finished the game."
-  }, false);
+  await showMessage(
+    {
+      cssClass: "game",
+      content: "Congratulations! You finished the game."
+    },
+    false
+  );
 }
 
 let messageBuffer = [];
 
 function saveGame(fnName) {
-  console.log("saving")
+  console.log("saving");
   localStorage.setItem("checkpoint", fnName);
   const messages = JSON.parse(localStorage.getItem("messages")) || [];
-  localStorage.setItem("messages", JSON.stringify([...messages, ...messageBuffer]));
+  localStorage.setItem(
+    "messages",
+    JSON.stringify([...messages, ...messageBuffer])
+  );
   messageBuffer = [];
-  console.log("saved")
+  console.log("saved");
 }
 
 function hasGame() {
@@ -112,37 +136,37 @@ function clearGame() {
   localStorage.removeItem("messages");
 }
 
-export async function showMessage(message, save=true) {
+export async function showMessage(message, save = true) {
   await botui.message.add(message);
   if (save) {
     messageBuffer.push(message);
   }
 }
 
-export async function promptText(action, save=true) {
-  const res = await botui.action.text({...action, addMessage: false});
+export async function promptText(action, save = true) {
+  const res = await botui.action.text({ ...action, addMessage: false });
   const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
 
-export async function promptButton(action, save=true) {
-  const res = await botui.action.button({...action, addMessage: false});
+export async function promptButton(action, save = true) {
+  const res = await botui.action.button({ ...action, addMessage: false });
   const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
 
-export async function promptButtonText(action, save=true) {
-  const res = await botui.action.buttontext({...action, addMessage: false});
+export async function promptButtonText(action, save = true) {
+  const res = await botui.action.buttontext({ ...action, addMessage: false });
   console.log(res);
   const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
 
-export async function promptSelect(action, save=true) {
-  const res = await botui.action.select({...action, addMessage: false});
+export async function promptSelect(action, save = true) {
+  const res = await botui.action.select({ ...action, addMessage: false });
   const message = { human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
