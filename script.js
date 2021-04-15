@@ -4,7 +4,7 @@ import { conversation2a } from "./story/part2a.js";
 import { conversation2b } from "./story/part2b.js";
 import { conversation2c } from "./story/part2c.js";
 import { conversation2sequel } from "./story/part2sequel.js";
-import { conversation3, puzzle3, conversation4, puzzle4, conversation5 } from "./story/part3.js";
+import { conversation3, puzzle3, conversation4, puzzle4, conversation5, conversation6 } from "./story/part3.js";
 
 const localStorage = window.localStorage;
 
@@ -24,7 +24,8 @@ const checkpoints = {
   puzzle3,
   conversation4,
   puzzle4, 
-  conversation5
+  conversation5,
+  conversation6
 };
 const startPoint = conversation1;
 

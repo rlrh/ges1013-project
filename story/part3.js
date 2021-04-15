@@ -142,7 +142,7 @@ export async function conversation4() {
     content:
       "You look around to see if there is anyone who might be here 10 mins ago. You notice a brightly lit neon sign beside the bakery. ![neon sign](https://i.imgur.com/bhwuIQE.jpg)"
   });
-  await promptButton({
+  await showMessage({
     cssClass: "narrator",
     delay,
     loading: true,
@@ -279,5 +279,125 @@ export async function conversation5() {
         text: "I've reached"
       }
     ]
+  });
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "What is written on the signboard (the one shown in the middle of the above image)?"
+  });
+  const hints = [];
+  const correctAnswerFn = (answer) =>
+    answer.toLowerCase().includes("fresh chicken");
+  const answerPlaceholder = "Text written on the signboard";
+  const hintButtonText = "I need more hints";
+  const wrongAnswerText =
+    "That is not the correct text. Please try again.";
+  await generatePuzzle(
+    hints,
+    correctAnswerFn,
+    answerPlaceholder,
+    hintButtonText,
+    wrongAnswerText,
+    "narrator"
+  );
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "👍"
+  });
+
+  return conversation6;
+}
+
+export async function conversation6() {
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "You notice a small coin purse on the floor."
+  });
+  await promptButton({
+    cssClass: "narrator",
+    delay,
+    action: [
+      {
+        text: "Pick up purse"
+      }
+    ]
+  });
+  await promptButton({
+    delay,
+    action: [
+      {
+        text: "whose wallet is this? [Opens purse] There's an IC inside. Mrs Tio Geok Lan …  Oh, there is a photo inside too"
+      }
+    ]
+  });
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "![image](https://www.nas.gov.sg/archivesonline/watermark/picas_data/tn_pcd/19980005884-8120-3181-2129/img0068.jpg)"
+  });
+  await promptButton({
+    delay,
+    action: [
+      {
+        text: "Hey! Your grandmother left behind her wallet at Tanglin Halt Market. There is also an old photograph of a hospital inside and it is marked 1966. Do you think she might have gone there?"
+      }
+    ]
+  });
+  await showMessage({
+    delay,
+    loading: true,
+    content: "Hmm. Yep, I think she might go there. Since the hospital is where my mother was born. The couple carrying a baby in the photograph are my grandparents."
+  });
+  await showMessage({
+    delay,
+    loading: true,
+    content: " If she is there, she would probably be sitting at the fountain."
+  });
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "Task #6: Find out the current name of the hospital."
+  });
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "Hint: This hospital is near Tanglin Halt and it is marked out on the 1958 SIT planning map."
+  });
+
+  const hints = [];
+  const correctAnswerFn = (answer) =>
+    answer.toLowerCase().includes("alexandra hospital");
+  const answerPlaceholder = "Current name of the hospital";
+  const hintButtonText = "I need more hints";
+  const wrongAnswerText =
+    "That is not the correct name. Please try again.";
+  await generatePuzzle(
+    hints,
+    correctAnswerFn,
+    answerPlaceholder,
+    hintButtonText,
+    wrongAnswerText,
+    "narrator"
+  );
+
+  await showMessage({
+    cssClass: "narrator",
+    delay,
+    loading: true,
+    content: "That is correct!"
+  });
+  await showMessage({
+    cssClass: "game",
+    delay,
+    loading: true,
+    content: "The story is to be continued..."
   });
 }
