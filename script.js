@@ -4,11 +4,12 @@ import { conversation2a } from "./story/part2a.js";
 import { conversation2b } from "./story/part2b.js";
 import { conversation2c } from "./story/part2c.js";
 import { conversation2sequel } from "./story/part2sequel.js";
+import { conversation3, puzzle3, conversation4, puzzle4, conversation5 } from "./story/part3.js";
 
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 500;
+export const delay = 50;
 
 const checkpoints = {
   conversation1,
@@ -18,7 +19,12 @@ const checkpoints = {
   conversation2a, 
   conversation2b,
   conversation2c,
-  conversation2sequel
+  conversation2sequel,
+  conversation3,
+  puzzle3,
+  conversation4,
+  puzzle4, 
+  conversation5
 };
 const startPoint = conversation1;
 
@@ -153,14 +159,14 @@ export async function showMessage(message, save = true) {
 
 export async function promptText(action, save = true) {
   const res = await botui.action.text({ ...action, addMessage: false });
-  const message = { human: true, content: res.text || res.value };
+  const message = { cssClass: action.cssClass, human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
 
 export async function promptButton(action, save = true) {
   const res = await botui.action.button({ ...action, addMessage: false });
-  const message = { human: true, content: res.text || res.value };
+  const message = { cssClass: action.cssClass, human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
@@ -168,14 +174,14 @@ export async function promptButton(action, save = true) {
 export async function promptButtonText(action, save = true) {
   const res = await botui.action.buttontext({ ...action, addMessage: false });
   console.log(res);
-  const message = { human: true, content: res.text || res.value };
+  const message = { cssClass: action.cssClass, human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
 
 export async function promptSelect(action, save = true) {
   const res = await botui.action.select({ ...action, addMessage: false });
-  const message = { human: true, content: res.text || res.value };
+  const message = { cssClass: action.cssClass, human: true, content: res.text || res.value };
   await showMessage(message, save);
   return res;
 }
