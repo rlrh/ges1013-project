@@ -170,6 +170,15 @@ export async function conversation4() {
     content:
       "I just talked to my mother. She shared some stories about their life in Tanglin Halt. They shifted there in the 1960s."
   });
+  await promptButton({
+    cssClass: "game",
+    delay,
+    action: [
+      {
+        text: "Continue"
+      }
+    ]
+  }, false);
   await showMessage({
     delay,
     loading: true,
@@ -187,6 +196,15 @@ export async function conversation4() {
   await showMessage({
     content: "![image](https://i.imgur.com/6jkrFC7.jpg)"
   });
+  await promptButton({
+    cssClass: "game",
+    delay,
+    action: [
+      {
+        text: "Continue"
+      }
+    ]
+  }, false);
   await showMessage({
     delay,
     loading: true,
