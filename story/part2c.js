@@ -92,7 +92,8 @@ export async function conversation2c() {
   await showMessage({
     delay,
     loading: true,
-    content: "[3 Commonwealth Drive](#)"
+    type: "html",
+    content: "<strong>3 Commonwealth Drive</strong>"
   });
 
   await promptButton({

@@ -31,8 +31,9 @@ export async function conversation2b() {
     cssClass: "narrator",
     delay,
     loading: true,
+    type: "html",
     content:
-      "There is a string of numbers on the note: [1.299845, 103.797689](#)"
+      "There is a string of numbers on the note: <strong>1.299845, 103.797689</strong>"
   });
 
   await promptButton({

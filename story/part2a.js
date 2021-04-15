@@ -75,8 +75,9 @@ export async function conversation2a() {
   await showMessage({
     delay,
     loading: true,
+    type: "html",
     content:
-      "Oh no dear, I am sorry. She used to live in [Tanglin Halt](#) back in the 80’s. She also told me that she still lives there, it must have been her dementia."
+      "Oh no dear, I am sorry. She used to live in <strong>Tanglin Halt</strong> back in the 80’s. She also told me that she still lives there, it must have been her dementia."
   });
 
   await promptButton({
