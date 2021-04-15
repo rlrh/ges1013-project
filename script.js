@@ -60,6 +60,7 @@ async function main() {
     );
     res = await promptButton(
       {
+        cssClass: "game",
         action: [
           {
             text: "Continue Game",
