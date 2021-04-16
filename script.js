@@ -125,7 +125,7 @@ async function main() {
   await showMessage(
     {
       cssClass: "game",
-      content: "[Citations](https://docs.google.com/document/d/1QLqMs6ebx3ShyQ5SeB2rZzYoSXkriyoW2C8v1-vpZDE/edit?usp=sharing)"
+      content: "[Citations](https://tracesofmemory.wordpress.com/citations/) password: ccyethatb"
     },
     false
   );
