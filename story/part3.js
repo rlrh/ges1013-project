@@ -6,19 +6,25 @@ export async function conversation3() {
     cssClass: "game",
     delay,
     loading: true,
-    content: "Congratulations! You have completed 50% of the game."
+    content: "Congratulations! You have completed 1st half of the game."
   });
   await showMessage({
     cssClass: "game",
     delay,
     loading: true,
-    content: "The 2nd half of the game requires you to physically visit 3 sites. The travelling time between each site is around 15 to 25 mins by bus or 5 to 10 mins by car.  In addition to using the internet, you need to physically explore the sites to search for clues and to complete tasks."
+    content: "The 2nd half of the game requires you to physically visit 3 sites. The travelling time between each site is around 15 to 25 mins by bus or 5 to 10 mins by car."
   });
   await showMessage({
     cssClass: "game",
     delay,
     loading: true,
-    content: "Click the start button once you are ready. You can click start once you are in Tanglin Halt neighbourhood."
+    content: "In addition to using the internet, you need to physically visit the sites to search for clues and to complete tasks. Feel free to take your time to explore the sites and complete the given tasks."
+  });
+  await showMessage({
+    cssClass: "game",
+    delay,
+    loading: true,
+    content: "Click the start button once you are in the Tanglin Halt neighbourhood."
   });
   await promptButton({
     cssClass: "game",
@@ -99,7 +105,7 @@ export async function puzzle3() {
     delay,
     loading: true,
     content:
-      "That’s right! Hock Ann Confectionery has been serving residents since 1982. Its sugar doughnuts, swiss roll, and mini cakes are some of its popular items."
+      "That’s right! Hock Ann Confectionery has been serving residents since 1982. Its sugar doughnuts, swiss roll, and mini cakes are some of its popular items. Check them out [here](https://www.instagram.com/hockannconfectionery/?hl=en)^"
   });
   await showMessage({
     cssClass: "narrator",
@@ -175,7 +181,7 @@ export async function conversation4() {
     delay,
     action: [
       {
-        text: "Continue"
+        text: "Next"
       }
     ]
   }, false);
@@ -191,9 +197,13 @@ export async function conversation4() {
     content: "![image](https://i.imgur.com/RG6nxFL.jpg)"
   });
   await showMessage({
+    delay: delay * 3,
+    loading: true,
     content: "![image](https://i.imgur.com/2cv0UbF.jpg)"
   });
   await showMessage({
+    delay: delay * 3,
+    loading: true,
     content: "![image](https://i.imgur.com/6jkrFC7.jpg)"
   });
   await promptButton({
@@ -201,7 +211,7 @@ export async function conversation4() {
     delay,
     action: [
       {
-        text: "Continue"
+        text: "Next"
       }
     ]
   }, false);
@@ -219,7 +229,6 @@ export async function conversation4() {
 
   return puzzle4;
 }
-
 
 export async function puzzle4() {
   await showMessage({
@@ -243,7 +252,7 @@ export async function puzzle4() {
   const hints = [
     {
       content:
-        "This is an image of Tanglin Halt from the 1958 SIT planning map of Queenstown. Compare this 1958 map with present-day Tanglin Halt. Which planned facilities are actually built and can be found in Tanglin Halt today? ![image](https://i.imgur.com/WpClDMy.jpg)"
+        "The location can be found in the 1958 SIT planning map of Queenstown. Compare this 1958 map with present-day Tanglin Halt. ![image](https://i.imgur.com/WpClDMy.jpg)"
     },
     {
       content: "The building (before renovation) can be seen in the background of this image taken in 1994. ![image](https://i.imgur.com/AHmtqL0.jpg) "

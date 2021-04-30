@@ -19,6 +19,19 @@ export async function conversation2() {
       }
     ]
   });
+  await showMessage({
+    delay,
+    loading: true,
+    content: "Oh… Let me check with my mum if there are other places she might have went to. "
+  });
+  await promptButton({
+    delay,
+    action: [
+      {
+        text: "Sure. In the meantime, I will ask around."
+      }
+    ]
+  });
   await promptButton({
     delay,
     cssClass: "narrator",
@@ -54,7 +67,13 @@ export async function conversation2() {
     delay,
     loading: true,
     content:
-      "Oh!! my mum said my grandmother used to work there. It must be a photograph she took while she was a clerk there!"
+      "Oh!! I was just going to tell you about Yock Eng too. According to my mum, my grandmother used to work there. My grandma used to cheer my mum on during Yock Eng and Chung Cheng’s combined Sports Meet despite being from different schools!"
+  });
+  await showMessage({
+    delay,
+    loading: true,
+    content:
+      "This must be a photograph she took while she was a clerk there! Update me if you can find her there."
   });
 
   return puzzle2;
@@ -67,7 +86,7 @@ export async function puzzle2() {
     loading: true,
     cssClass: "narrator",
     content:
-      "Your friends’ grandmother must have wandered there! You notice the date 24/03/1981 on the back of the photo."
+      "Your friend's grandmother must have wandered there! You notice the date 24/03/1981 on the back of the photo."
   });
 
   await showMessage({
@@ -138,6 +157,7 @@ export async function puzzle2() {
   const OPTION_B = "Open area";
   const OPTION_C = "Rooms on the 2nd storey";
   const res = await promptButton({
+    cssClass: "narrator",
     delay,
     action: [
       {
