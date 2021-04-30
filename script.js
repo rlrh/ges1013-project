@@ -4,12 +4,12 @@ import { conversation2a } from "./story/part2a.js";
 import { conversation2b } from "./story/part2b.js";
 import { conversation2c } from "./story/part2c.js";
 import { conversation2sequel } from "./story/part2sequel.js";
-import { conversation3, puzzle3, conversation4, puzzle4, conversation5, conversation6 } from "./story/part3.js";
+import { conversation3, puzzle3, conversation4, puzzle4, conversation5, conversation6, puzzle6 } from "./story/part3.js";
 
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 1000;
+export const delay = 100;
 
 const checkpoints = {
   conversation1,
@@ -25,7 +25,8 @@ const checkpoints = {
   conversation4,
   puzzle4, 
   conversation5,
-  conversation6
+  conversation6,
+  puzzle6
 };
 const startPoint = conversation1;
 
@@ -114,21 +115,6 @@ async function main() {
   }
   saveGame(null);
 
-  await showMessage(
-    {
-      cssClass: "game",
-      content: "Congratulations! You finished the game."
-    },
-    false
-  );
-
-  await showMessage(
-    {
-      cssClass: "game",
-      content: "[Citations](https://tracesofmemory.wordpress.com/citations/) password: ccyethatb"
-    },
-    false
-  );
 }
 
 let messageBuffer = [];
