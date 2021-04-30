@@ -9,7 +9,7 @@ import { conversation3, puzzle3, conversation4, puzzle4, conversation5, conversa
 const localStorage = window.localStorage;
 
 const botui = new BotUI("hello-world");
-export const delay = 100;
+export const delay = 1000;
 
 const checkpoints = {
   conversation1,
